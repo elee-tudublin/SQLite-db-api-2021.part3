@@ -5,11 +5,11 @@ const categoryService = require("../services/categoryService.js");
 /* Handle get requests for '/'
 /* this is the index or home page
 */
-router.get("/", function (req, res) {
+router.get("/", async (req, res) => {
   // Get all products
   try {
     // call the service
-    const result = categoryService.getCategories();
+    const result = await categoryService.getCategories();
 
     // Send response back to client
     res.json(result);
