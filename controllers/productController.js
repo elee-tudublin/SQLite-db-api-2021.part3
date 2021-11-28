@@ -5,11 +5,11 @@ const productService = require("../services/productService.js");
 /* Handle get requests for '/'
 /* this is the index or home page
 */
-router.get("/", function (req, res) {
+router.get("/", async (req, res) => {
   // Get all products
   try {
     // call the service
-    const result = productService.getProducts();
+    const result = await productService.getProducts();
 
     // Send response back to client
     res.json(result);
@@ -25,7 +25,7 @@ router.get("/", function (req, res) {
 // req.params version (prefered)
 // req format: /product/1
 //
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
   // read values from req
   const id = req.params.id;
 
@@ -37,7 +37,7 @@ router.get("/:id", (req, res) => {
 
   try {
     // Call the service
-    const result = productService.getProductById(id);
+    const result = await productService.getProductById(id);
 
     // Send response back to client
     res.json(result);
@@ -53,7 +53,7 @@ router.get("/:id", (req, res) => {
 // req.query version
 // req format: /product/byid?id=1
 //
-router.get("/bycat/:catId", (req, res) => {
+router.get("/bycat/:catId", async (req, res) => {
   // read values from req
   const catId = req.params.catId;
 
@@ -64,7 +64,7 @@ router.get("/bycat/:catId", (req, res) => {
   }
   // Get product
   try {
-    const result = productService.getProductsByCatId(catId);
+    const result = await productService.getProductsByCatId(catId);
 
     // Send response back to client
     res.json(result);
